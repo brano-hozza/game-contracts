@@ -1,0 +1,93 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					}
+				],
+				"name": "getGamePermissions",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					}
+				],
+				"name": "isGameRegistered",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Interface for managing game registrations and permissions",
+			"kind": "dev",
+			"methods": {},
+			"title": "IGameRegistry",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getGamePermissions(address)": {
+					"notice": "Get attributes a game can modify"
+				},
+				"isGameRegistered(address)": {
+					"notice": "Check if a game is registered"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/lib/IGameRegistry.sol": "IGameRegistry"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/lib/IGameRegistry.sol": {
+			"keccak256": "0x3871f802ea6162077b2d8931f80b8bd293747f83c523e924c4e64bc6b874d7be",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://71c8ddc6e2147f7f8ceafe40b454199dd6e84db33ae158df456a9dbbd472ab37",
+				"dweb:/ipfs/QmZUVAF5vS2KkWihURrrvPrJUt71nvNmawXWfvhwX9Pdit"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,385 @@
+{
+	"id": "2a82c6162385a60120a2deb2728e5da4",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.26",
+	"solcLongVersion": "0.8.26+commit.8a97fa7a",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"contracts/lib/IGameRegistry.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\n/**\n * @title IGameRegistry\n * @dev Interface for managing game registrations and permissions\n */\ninterface IGameRegistry {\n    /// @notice Check if a game is registered\n    function isGameRegistered(address game) external view returns (bool);\n    \n    /// @notice Get attributes a game can modify\n    function getGamePermissions(address game) external view returns (bytes32[] memory);\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"contracts/lib/IGameRegistry.sol": {
+				"IGameRegistry": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "game",
+									"type": "address"
+								}
+							],
+							"name": "getGamePermissions",
+							"outputs": [
+								{
+									"internalType": "bytes32[]",
+									"name": "",
+									"type": "bytes32[]"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "game",
+									"type": "address"
+								}
+							],
+							"name": "isGameRegistered",
+							"outputs": [
+								{
+									"internalType": "bool",
+									"name": "",
+									"type": "bool"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"details": "Interface for managing game registrations and permissions",
+						"kind": "dev",
+						"methods": {},
+						"title": "IGameRegistry",
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"getGamePermissions(address)": "55491444",
+							"isGameRegistered(address)": "ee658e45"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.26+commit.8a97fa7a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"game\",\"type\":\"address\"}],\"name\":\"getGamePermissions\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"game\",\"type\":\"address\"}],\"name\":\"isGameRegistered\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Interface for managing game registrations and permissions\",\"kind\":\"dev\",\"methods\":{},\"title\":\"IGameRegistry\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getGamePermissions(address)\":{\"notice\":\"Get attributes a game can modify\"},\"isGameRegistered(address)\":{\"notice\":\"Check if a game is registered\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/lib/IGameRegistry.sol\":\"IGameRegistry\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/lib/IGameRegistry.sol\":{\"keccak256\":\"0x3871f802ea6162077b2d8931f80b8bd293747f83c523e924c4e64bc6b874d7be\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://71c8ddc6e2147f7f8ceafe40b454199dd6e84db33ae158df456a9dbbd472ab37\",\"dweb:/ipfs/QmZUVAF5vS2KkWihURrrvPrJUt71nvNmawXWfvhwX9Pdit\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {
+							"getGamePermissions(address)": {
+								"notice": "Get attributes a game can modify"
+							},
+							"isGameRegistered(address)": {
+								"notice": "Check if a game is registered"
+							}
+						},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"contracts/lib/IGameRegistry.sol": {
+				"ast": {
+					"absolutePath": "contracts/lib/IGameRegistry.sol",
+					"exportedSymbols": {
+						"IGameRegistry": [
+							20
+						]
+					},
+					"id": 21,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "32:23:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IGameRegistry",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": {
+								"id": 2,
+								"nodeType": "StructuredDocumentation",
+								"src": "57:97:0",
+								"text": " @title IGameRegistry\n @dev Interface for managing game registrations and permissions"
+							},
+							"fullyImplemented": false,
+							"id": 20,
+							"linearizedBaseContracts": [
+								20
+							],
+							"name": "IGameRegistry",
+							"nameLocation": "165:13:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"documentation": {
+										"id": 3,
+										"nodeType": "StructuredDocumentation",
+										"src": "185:41:0",
+										"text": "@notice Check if a game is registered"
+									},
+									"functionSelector": "ee658e45",
+									"id": 10,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "isGameRegistered",
+									"nameLocation": "240:16:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 6,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 5,
+												"mutability": "mutable",
+												"name": "game",
+												"nameLocation": "265:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "257:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "257:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "256:14:0"
+									},
+									"returnParameters": {
+										"id": 9,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 8,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "294:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_bool",
+													"typeString": "bool"
+												},
+												"typeName": {
+													"id": 7,
+													"name": "bool",
+													"nodeType": "ElementaryTypeName",
+													"src": "294:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_bool",
+														"typeString": "bool"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "293:6:0"
+									},
+									"scope": 20,
+									"src": "231:69:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"documentation": {
+										"id": 11,
+										"nodeType": "StructuredDocumentation",
+										"src": "310:44:0",
+										"text": "@notice Get attributes a game can modify"
+									},
+									"functionSelector": "55491444",
+									"id": 19,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "getGamePermissions",
+									"nameLocation": "368:18:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 14,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 13,
+												"mutability": "mutable",
+												"name": "game",
+												"nameLocation": "395:4:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "387:12:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 12,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "387:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "386:14:0"
+									},
+									"returnParameters": {
+										"id": 18,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 17,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "424:16:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+													"typeString": "bytes32[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 15,
+														"name": "bytes32",
+														"nodeType": "ElementaryTypeName",
+														"src": "424:7:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_bytes32",
+															"typeString": "bytes32"
+														}
+													},
+													"id": 16,
+													"nodeType": "ArrayTypeName",
+													"src": "424:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+														"typeString": "bytes32[]"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "423:18:0"
+									},
+									"scope": 20,
+									"src": "359:83:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 21,
+							"src": "155:289:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "32:413:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}
