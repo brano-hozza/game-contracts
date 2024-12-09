@@ -1,0 +1,496 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "OwnableInvalidOwner",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "OwnableUnauthorizedAccount",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32[]",
+						"name": "attributes",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "AttributesUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "registeredBy",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32[]",
+						"name": "attributes",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "GameRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "unregisteredBy",
+						"type": "address"
+					}
+				],
+				"name": "GameUnregistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "getAllRegisteredGames",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					}
+				],
+				"name": "getGameData",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "isRegistered",
+						"type": "bool"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "attributes",
+						"type": "bytes32[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "registrationTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "registeredBy",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					}
+				],
+				"name": "getGamePermissions",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "attributes",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "hasPermissions",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					}
+				],
+				"name": "isGameRegistered",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "attributes",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "registerGame",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "registeredGames",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					}
+				],
+				"name": "unregisterGame",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "attributes",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "updateGameAttributes",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Implementation of IGameRegistry for managing game registrations and permissions",
+			"errors": {
+				"OwnableInvalidOwner(address)": [
+					{
+						"details": "The owner is not a valid owner account. (eg. `address(0)`)"
+					}
+				],
+				"OwnableUnauthorizedAccount(address)": [
+					{
+						"details": "The caller account is not authorized to perform an operation."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {
+				"getAllRegisteredGames()": {
+					"returns": {
+						"_0": "Array of registered game addresses"
+					}
+				},
+				"getGameData(address)": {
+					"params": {
+						"game": "Address of the game contract"
+					},
+					"returns": {
+						"attributes": "Allowed attributes",
+						"isRegistered": "Registration status",
+						"registeredBy": "Address that registered the game",
+						"registrationTime": "Time of registration"
+					}
+				},
+				"getGamePermissions(address)": {
+					"params": {
+						"game": "Address of the game contract"
+					},
+					"returns": {
+						"_0": "Array of attribute IDs the game can modify"
+					}
+				},
+				"hasPermissions(address,bytes32[])": {
+					"params": {
+						"attributes": "Attributes to check",
+						"game": "Address of the game contract"
+					},
+					"returns": {
+						"_0": "bool indicating if the game has permission for all attributes"
+					}
+				},
+				"isGameRegistered(address)": {
+					"params": {
+						"game": "Address of the game contract"
+					},
+					"returns": {
+						"_0": "bool indicating if the game is registered"
+					}
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"registerGame(address,bytes32[])": {
+					"params": {
+						"attributes": "List of attributes the game can modify",
+						"game": "Address of the game contract"
+					}
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				},
+				"unregisterGame(address)": {
+					"params": {
+						"game": "Address of the game contract to unregister"
+					}
+				},
+				"updateGameAttributes(address,bytes32[])": {
+					"params": {
+						"attributes": "New list of allowed attributes",
+						"game": "Address of the game contract"
+					}
+				}
+			},
+			"title": "GameRegistry",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getAllRegisteredGames()": {
+					"notice": "Get all registered games"
+				},
+				"getGameData(address)": {
+					"notice": "Get registration data for a game"
+				},
+				"getGamePermissions(address)": {
+					"notice": "Get attributes a game can modify"
+				},
+				"hasPermissions(address,bytes32[])": {
+					"notice": "Check if a game has permission for specific attributes"
+				},
+				"isGameRegistered(address)": {
+					"notice": "Check if a game is registered"
+				},
+				"registerGame(address,bytes32[])": {
+					"notice": "Register a new game"
+				},
+				"unregisterGame(address)": {
+					"notice": "Unregister a game"
+				},
+				"updateGameAttributes(address,bytes32[])": {
+					"notice": "Update allowed attributes for a registered game"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/lib/GameRegistry.sol": "GameRegistry"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"contracts/lib/GameRegistry.sol": {
+			"keccak256": "0x42970cd4ded96d2eb44718d0c4454d6d6fc19435f3f9008e07b1c23a68748ffc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://afa836f94cde15e01fba346545c7ef3dd62a0aebeddbcd9dc4ef4d5f6c796e0f",
+				"dweb:/ipfs/QmeG7jtDhvJZSYtVWydrAuW6SSECPfqUgnXzSxdkSfN1Q5"
+			]
+		},
+		"contracts/lib/IGameRegistry.sol": {
+			"keccak256": "0x3871f802ea6162077b2d8931f80b8bd293747f83c523e924c4e64bc6b874d7be",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://71c8ddc6e2147f7f8ceafe40b454199dd6e84db33ae158df456a9dbbd472ab37",
+				"dweb:/ipfs/QmZUVAF5vS2KkWihURrrvPrJUt71nvNmawXWfvhwX9Pdit"
+			]
+		}
+	},
+	"version": 1
+}
