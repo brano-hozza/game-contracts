@@ -92,25 +92,6 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "game",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "bytes32[]",
-						"name": "supportedAttributes",
-						"type": "bytes32[]"
-					}
-				],
-				"name": "GameRegistered",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -273,24 +254,11 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "bytes32[]",
-						"name": "supportedAttributes",
-						"type": "bytes32[]"
-					}
-				],
-				"name": "registerGame",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "registry",
 				"outputs": [
 					{
-						"internalType": "contract IGameRegistry",
+						"internalType": "contract GameRegistry",
 						"name": "",
 						"type": "address"
 					}
@@ -445,9 +413,6 @@
 				"AttributeModified(uint256,address,bytes32,bytes)": {
 					"details": "Emitted when an attribute is modified by a registered game"
 				},
-				"GameRegistered(address,bytes32[])": {
-					"details": "Emitted when a game registers to interact with assets"
-				},
 				"Transfer(address,address,uint256)": {
 					"details": "Emitted when `tokenId` token is transferred from `from` to `to`."
 				}
@@ -477,11 +442,6 @@
 				},
 				"ownerOf(uint256)": {
 					"details": "Returns the owner of the `tokenId` token. Requirements: - `tokenId` must exist."
-				},
-				"registerGame(bytes32[])": {
-					"params": {
-						"supportedAttributes": "List of attribute IDs the game can modify"
-					}
 				},
 				"safeTransferFrom(address,address,uint256)": {
 					"details": "Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients are aware of the ERC-721 protocol to prevent tokens from being forever locked. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must have been allowed to move this token by either {approve} or   {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon   a safe transfer. Emits a {Transfer} event."
@@ -515,9 +475,6 @@
 				"getAttributes(uint256,bytes32[])": {
 					"notice": "Get attributes for a token"
 				},
-				"registerGame(bytes32[])": {
-					"notice": "Register a game to interact with assets"
-				},
 				"setAttributes(uint256,bytes32[],bytes[])": {
 					"notice": "Set attributes for a token"
 				}
@@ -541,12 +498,28 @@
 		"remappings": []
 	},
 	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
 		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
 			"keccak256": "0x5dc63d1c6a12fe1b17793e1745877b2fcbe1964c3edfd0a482fac21ca8f18261",
 			"license": "MIT",
 			"urls": [
 				"bzz-raw://6b7f97c5960a50fd1822cb298551ffc908e37b7893a68d6d08bce18a11cb0f11",
 				"dweb:/ipfs/QmQQvxBytoY1eBt3pRQDmvH2hZ2yjhs12YqVfzGm7KSURq"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
 			]
 		},
 		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
@@ -558,27 +531,27 @@
 			]
 		},
 		"contracts/lib/BaseGameAsset.sol": {
-			"keccak256": "0xf0c620a07d8c7d488ac4e22514bb3d9e9c406d15756fbffcd786d4a1f0ad3c60",
+			"keccak256": "0x36911934dfd75fa1971a3ee62e7067e93a69ae2c7a458d6882b01fde7b703c8e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://425acc5f489fd82ca0f69260f8b2ff7723ae6d9e65283c592b4e010b66b07d2c",
-				"dweb:/ipfs/QmT5QPQTNT6D2bwouVDjsMGJgFhSZCd4ZXMe2Emc5xZFSe"
+				"bzz-raw://9b30d0d5f345d3280b006c84fb350633be7c0aa495e4da22d84db6d7da85db3e",
+				"dweb:/ipfs/Qmbq2gnxdQuYDr79eQbLXEtNs7tGgbS3ZYTsHFqvAEpCoC"
+			]
+		},
+		"contracts/lib/GameRegistry.sol": {
+			"keccak256": "0x80d3dde7a2868ed730d880229411e8a8adc4b52e0b1f53bfb232d9193210760f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1bef4240092ed49176399ef7f0515b24f5dd4f83d2399899e8ab6af7f30511e6",
+				"dweb:/ipfs/QmTR8q8NMpgEmaRPgQqDdvKoQVX51MPEiLYgzFuNwLvsCH"
 			]
 		},
 		"contracts/lib/IGameAsset.sol": {
-			"keccak256": "0x0bc07a01b3ae156ce87c5878c905598190ca166225daaed178034cba4e635870",
+			"keccak256": "0xb81ced17f5fcd00bc0891d2e7bdc112d1ce521e7a88704af1d9095d6e825f880",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e1760ce59c120ef019ef5af0b12399c99fbae85cb03614f76386628e94782048",
-				"dweb:/ipfs/QmY5xfvgMZcCNMPKPP2Sqrk39fwfg5QG259mRR2xwAZufo"
-			]
-		},
-		"contracts/lib/IGameRegistry.sol": {
-			"keccak256": "0x3871f802ea6162077b2d8931f80b8bd293747f83c523e924c4e64bc6b874d7be",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://71c8ddc6e2147f7f8ceafe40b454199dd6e84db33ae158df456a9dbbd472ab37",
-				"dweb:/ipfs/QmZUVAF5vS2KkWihURrrvPrJUt71nvNmawXWfvhwX9Pdit"
+				"bzz-raw://238d27bbcee631693d0bac348a5a1fbcdb3f80a1fbc9acfc3eafd84cdfad22fb",
+				"dweb:/ipfs/QmcyCZrCwXTYZBZ7iyHKZWuqhDFMMfC4DPJYxbpKQ2RQFw"
 			]
 		}
 	},

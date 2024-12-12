@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 import "./IGameAsset.sol";
-import "./IGameRegistry.sol";
+import "./GameRegistry.sol";
 /**
  * @title BaseGameAsset
  * @dev Abstract implementation of IGameAsset with core functionality
  */
 abstract contract BaseGameAsset is IGameAsset {
     // Registry of games and their permissions
-    IGameRegistry public immutable registry;
+    GameRegistry public immutable registry;
     
     // Attribute storage
     mapping(uint256 => mapping(bytes32 => bytes)) private _attributes;
@@ -17,7 +17,7 @@ abstract contract BaseGameAsset is IGameAsset {
     mapping(uint256 => bool) private _tokenExists;
     
     constructor(address registryAddress) {
-        registry = IGameRegistry(registryAddress);
+        registry = GameRegistry(registryAddress);
     }
 
 
@@ -34,17 +34,8 @@ abstract contract BaseGameAsset is IGameAsset {
     /// @notice Modifier to check if game is registered and has permission
     modifier onlyRegisteredGame(bytes32[] calldata attributes) {
         require(registry.isGameRegistered(msg.sender), "Game not registered");
-        bytes32[] memory permissions = registry.getGamePermissions(msg.sender);
-        for (uint i = 0; i < attributes.length; i++) {
-            bool hasPermission = false;
-            for (uint j = 0; j < permissions.length; j++) {
-                if (attributes[i] == permissions[j]) {
-                    hasPermission = true;
-                    break;
-                }
-            }
-            require(hasPermission, "Missing permission");
-        }
+        bool hasPermission = registry.hasPermissions(address(0), msg.sender, attributes);
+        require(hasPermission, "Missing permission");
         _;
     }
     

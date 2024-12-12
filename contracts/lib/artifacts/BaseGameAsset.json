@@ -56,7 +56,6 @@
 			"getAttributes(uint256,bytes32[])": "0a35e3d7",
 			"isApprovedForAll(address,address)": "e985e9c5",
 			"ownerOf(uint256)": "6352211e",
-			"registerGame(bytes32[])": "e508cb2c",
 			"registry()": "7b103999",
 			"safeTransferFrom(address,address,uint256)": "42842e0e",
 			"safeTransferFrom(address,address,uint256,bytes)": "b88d4fde",
@@ -146,25 +145,6 @@
 				}
 			],
 			"name": "AttributeModified",
-			"type": "event"
-		},
-		{
-			"anonymous": false,
-			"inputs": [
-				{
-					"indexed": true,
-					"internalType": "address",
-					"name": "game",
-					"type": "address"
-				},
-				{
-					"indexed": false,
-					"internalType": "bytes32[]",
-					"name": "supportedAttributes",
-					"type": "bytes32[]"
-				}
-			],
-			"name": "GameRegistered",
 			"type": "event"
 		},
 		{
@@ -335,24 +315,11 @@
 			"type": "function"
 		},
 		{
-			"inputs": [
-				{
-					"internalType": "bytes32[]",
-					"name": "supportedAttributes",
-					"type": "bytes32[]"
-				}
-			],
-			"name": "registerGame",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
 			"inputs": [],
 			"name": "registry",
 			"outputs": [
 				{
-					"internalType": "contract IGameRegistry",
+					"internalType": "contract GameRegistry",
 					"name": "",
 					"type": "address"
 				}

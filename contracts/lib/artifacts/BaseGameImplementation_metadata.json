@@ -6,13 +6,151 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "assetContract",
-				"outputs": [
+				"anonymous": false,
+				"inputs": [
 					{
-						"internalType": "contract IGameAsset",
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "assetType",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "assetContract",
+						"type": "address"
+					}
+				],
+				"name": "AssetContractRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "assetType",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "assetContract",
+						"type": "address"
+					}
+				],
+				"name": "AssetContractRemoved",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "",
 						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "allowedAttributes",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"name": "assetContracts",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "assetContract",
+						"type": "address"
+					}
+				],
+				"name": "getAllowedAttributes",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "assetType",
+						"type": "bytes32"
+					}
+				],
+				"name": "getAssetContract",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getSupportedAssetTypes",
+				"outputs": [
+					{
+						"internalType": "bytes32[]",
+						"name": "",
+						"type": "bytes32[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "supportedAssetTypes",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
 					}
 				],
 				"stateMutability": "view",
@@ -20,10 +158,35 @@
 			}
 		],
 		"devdoc": {
-			"details": "Abstract contract for game-specific implementations",
+			"details": "Abstract contract for game-specific implementations supporting multiple asset types",
 			"kind": "dev",
-			"methods": {},
-			"title": "BaseGameImplementation",
+			"methods": {
+				"getAllowedAttributes(address)": {
+					"details": "Get allowed attributes for an asset contract",
+					"params": {
+						"assetContract": "Address of the asset contract"
+					},
+					"returns": {
+						"_0": "Array of allowed attribute IDs"
+					}
+				},
+				"getAssetContract(bytes32)": {
+					"details": "Get asset contract for a specific type",
+					"params": {
+						"assetType": "Type of the asset"
+					},
+					"returns": {
+						"_0": "Address of the asset contract"
+					}
+				},
+				"getSupportedAssetTypes()": {
+					"details": "Get all supported asset types",
+					"returns": {
+						"_0": "Array of supported asset types"
+					}
+				}
+			},
+			"title": "BaseMultiGameImplementation",
 			"version": 1
 		},
 		"userdoc": {
@@ -48,36 +211,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
-			"keccak256": "0x5dc63d1c6a12fe1b17793e1745877b2fcbe1964c3edfd0a482fac21ca8f18261",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6b7f97c5960a50fd1822cb298551ffc908e37b7893a68d6d08bce18a11cb0f11",
-				"dweb:/ipfs/QmQQvxBytoY1eBt3pRQDmvH2hZ2yjhs12YqVfzGm7KSURq"
-			]
-		},
-		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-			"keccak256": "0x79796192ec90263f21b464d5bc90b777a525971d3de8232be80d9c4f9fb353b8",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://f6fda447a62815e8064f47eff0dd1cf58d9207ad69b5d32280f8d7ed1d1e4621",
-				"dweb:/ipfs/QmfDRc7pxfaXB2Dh9np5Uf29Na3pQ7tafRS684wd3GLjVL"
-			]
-		},
 		"contracts/lib/BaseGameImplementation.sol": {
-			"keccak256": "0xe77f2444e2155f272d2fb08e448845112df27f79533b3a7fc6f272aadee9cd6d",
+			"keccak256": "0xaa2eac33962e8afd191b2b1c81ff5c6588e8dfd49cf3cae05c190ccc70af64ea",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cb61a7feaeb615552aca6130fe410541d418c5d1127367c25dfa43b5be82f898",
-				"dweb:/ipfs/QmQC9whiidwNKpEvozfKqvFd5YjxW4Z2GfueLQzncQmCbH"
-			]
-		},
-		"contracts/lib/IGameAsset.sol": {
-			"keccak256": "0x938b417d12ef03f8f610229a396b3d23d294b0170f6c909ff614a054b3dff59f",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://3ebf64e88e7a6bba34030a18b63664a704b5b467392693faa2d4b77957965fac",
-				"dweb:/ipfs/QmXo6n17W9yyNCbWRZr2RUcQYZTJy4t7d6sfcL8NoM5Ppc"
+				"bzz-raw://4dce6b610ca4f65efc47dec201151819f271ab21fde736a9a470625f15bbffc1",
+				"dweb:/ipfs/QmV4Dxq49jL8C9kmkjKKa9V5GhSDuW5RAdfc4XZtqkjDpy"
 			]
 		}
 	},

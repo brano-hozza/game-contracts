@@ -42,13 +42,38 @@
 						"type": "address"
 					},
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "assetContract",
+						"type": "address"
+					},
+					{
 						"indexed": false,
 						"internalType": "bytes32[]",
 						"name": "attributes",
 						"type": "bytes32[]"
 					}
 				],
-				"name": "AttributesUpdated",
+				"name": "AssetPermissionGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "assetContract",
+						"type": "address"
+					}
+				],
+				"name": "AssetPermissionRevoked",
 				"type": "event"
 			},
 			{
@@ -65,12 +90,6 @@
 						"internalType": "address",
 						"name": "registeredBy",
 						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "bytes32[]",
-						"name": "attributes",
-						"type": "bytes32[]"
 					}
 				],
 				"name": "GameRegistered",
@@ -115,8 +134,14 @@
 				"type": "event"
 			},
 			{
-				"inputs": [],
-				"name": "getAllRegisteredGames",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					}
+				],
+				"name": "getGameAssetContracts",
 				"outputs": [
 					{
 						"internalType": "address[]",
@@ -133,39 +158,10 @@
 						"internalType": "address",
 						"name": "game",
 						"type": "address"
-					}
-				],
-				"name": "getGameData",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "isRegistered",
-						"type": "bool"
-					},
-					{
-						"internalType": "bytes32[]",
-						"name": "attributes",
-						"type": "bytes32[]"
-					},
-					{
-						"internalType": "uint256",
-						"name": "registrationTime",
-						"type": "uint256"
 					},
 					{
 						"internalType": "address",
-						"name": "registeredBy",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "game",
+						"name": "assetContract",
 						"type": "address"
 					}
 				],
@@ -185,6 +181,34 @@
 					{
 						"internalType": "address",
 						"name": "game",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "assetContract",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32[]",
+						"name": "attributes",
+						"type": "bytes32[]"
+					}
+				],
+				"name": "grantAssetPermission",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "assetContract",
 						"type": "address"
 					},
 					{
@@ -242,11 +266,6 @@
 						"internalType": "address",
 						"name": "game",
 						"type": "address"
-					},
-					{
-						"internalType": "bytes32[]",
-						"name": "attributes",
-						"type": "bytes32[]"
 					}
 				],
 				"name": "registerGame",
@@ -284,6 +303,24 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "game",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "assetContract",
+						"type": "address"
+					}
+				],
+				"name": "revokeAssetPermission",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "newOwner",
 						"type": "address"
 					}
@@ -292,41 +329,9 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "game",
-						"type": "address"
-					}
-				],
-				"name": "unregisterGame",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "game",
-						"type": "address"
-					},
-					{
-						"internalType": "bytes32[]",
-						"name": "attributes",
-						"type": "bytes32[]"
-					}
-				],
-				"name": "updateGameAttributes",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
 			}
 		],
 		"devdoc": {
-			"details": "Implementation of IGameRegistry for managing game registrations and permissions",
 			"errors": {
 				"OwnableInvalidOwner(address)": [
 					{
@@ -341,103 +346,91 @@
 			},
 			"kind": "dev",
 			"methods": {
-				"getAllRegisteredGames()": {
-					"returns": {
-						"_0": "Array of registered game addresses"
-					}
-				},
-				"getGameData(address)": {
+				"getGameAssetContracts(address)": {
 					"params": {
-						"game": "Address of the game contract"
+						"game": "Address of the game"
 					},
 					"returns": {
-						"attributes": "Allowed attributes",
-						"isRegistered": "Registration status",
-						"registeredBy": "Address that registered the game",
-						"registrationTime": "Time of registration"
+						"_0": "Array of asset contract addresses"
 					}
 				},
-				"getGamePermissions(address)": {
+				"getGamePermissions(address,address)": {
 					"params": {
-						"game": "Address of the game contract"
+						"assetContract": "Address of the asset contract",
+						"game": "Address of the game"
 					},
 					"returns": {
-						"_0": "Array of attribute IDs the game can modify"
+						"_0": "Array of allowed attribute IDs"
 					}
 				},
-				"hasPermissions(address,bytes32[])": {
+				"grantAssetPermission(address,address,bytes32[])": {
 					"params": {
-						"attributes": "Attributes to check",
-						"game": "Address of the game contract"
+						"assetContract": "Address of the asset contract",
+						"attributes": "Array of attribute IDs the game can modify",
+						"game": "Address of the game"
+					}
+				},
+				"hasPermissions(address,address,bytes32[])": {
+					"params": {
+						"assetContract": "Address of the asset contract",
+						"attributes": "Array of attribute IDs to check",
+						"game": "Address of the game"
 					},
 					"returns": {
-						"_0": "bool indicating if the game has permission for all attributes"
+						"_0": "bool indicating if the game has all specified permissions"
 					}
 				},
 				"isGameRegistered(address)": {
 					"params": {
-						"game": "Address of the game contract"
-					},
-					"returns": {
-						"_0": "bool indicating if the game is registered"
+						"game": "Address of the game to check"
 					}
 				},
 				"owner()": {
 					"details": "Returns the address of the current owner."
 				},
-				"registerGame(address,bytes32[])": {
+				"registerGame(address)": {
 					"params": {
-						"attributes": "List of attributes the game can modify",
-						"game": "Address of the game contract"
+						"game": "Address of the game to register"
 					}
 				},
 				"renounceOwnership()": {
 					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
 				},
+				"revokeAssetPermission(address,address)": {
+					"params": {
+						"assetContract": "Address of the asset contract",
+						"game": "Address of the game"
+					}
+				},
 				"transferOwnership(address)": {
 					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
-				},
-				"unregisterGame(address)": {
-					"params": {
-						"game": "Address of the game contract to unregister"
-					}
-				},
-				"updateGameAttributes(address,bytes32[])": {
-					"params": {
-						"attributes": "New list of allowed attributes",
-						"game": "Address of the game contract"
-					}
 				}
 			},
-			"title": "GameRegistry",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
 			"methods": {
-				"getAllRegisteredGames()": {
-					"notice": "Get all registered games"
+				"getGameAssetContracts(address)": {
+					"notice": "Get all asset contracts a game has permissions for"
 				},
-				"getGameData(address)": {
-					"notice": "Get registration data for a game"
+				"getGamePermissions(address,address)": {
+					"notice": "Get allowed attributes for a game and asset contract"
 				},
-				"getGamePermissions(address)": {
-					"notice": "Get attributes a game can modify"
+				"grantAssetPermission(address,address,bytes32[])": {
+					"notice": "Grant permission to a game for specific asset contract attributes"
 				},
-				"hasPermissions(address,bytes32[])": {
-					"notice": "Check if a game has permission for specific attributes"
+				"hasPermissions(address,address,bytes32[])": {
+					"notice": "Check if a game has permission for specific attributes on an asset contract"
 				},
 				"isGameRegistered(address)": {
 					"notice": "Check if a game is registered"
 				},
-				"registerGame(address,bytes32[])": {
+				"registerGame(address)": {
 					"notice": "Register a new game"
 				},
-				"unregisterGame(address)": {
-					"notice": "Unregister a game"
-				},
-				"updateGameAttributes(address,bytes32[])": {
-					"notice": "Update allowed attributes for a registered game"
+				"revokeAssetPermission(address,address)": {
+					"notice": "Revoke a game's permission for an asset contract"
 				}
 			},
 			"version": 1
@@ -476,19 +469,11 @@
 			]
 		},
 		"contracts/lib/GameRegistry.sol": {
-			"keccak256": "0x42970cd4ded96d2eb44718d0c4454d6d6fc19435f3f9008e07b1c23a68748ffc",
+			"keccak256": "0x80d3dde7a2868ed730d880229411e8a8adc4b52e0b1f53bfb232d9193210760f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://afa836f94cde15e01fba346545c7ef3dd62a0aebeddbcd9dc4ef4d5f6c796e0f",
-				"dweb:/ipfs/QmeG7jtDhvJZSYtVWydrAuW6SSECPfqUgnXzSxdkSfN1Q5"
-			]
-		},
-		"contracts/lib/IGameRegistry.sol": {
-			"keccak256": "0x3871f802ea6162077b2d8931f80b8bd293747f83c523e924c4e64bc6b874d7be",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://71c8ddc6e2147f7f8ceafe40b454199dd6e84db33ae158df456a9dbbd472ab37",
-				"dweb:/ipfs/QmZUVAF5vS2KkWihURrrvPrJUt71nvNmawXWfvhwX9Pdit"
+				"bzz-raw://1bef4240092ed49176399ef7f0515b24f5dd4f83d2399899e8ab6af7f30511e6",
+				"dweb:/ipfs/QmTR8q8NMpgEmaRPgQqDdvKoQVX51MPEiLYgzFuNwLvsCH"
 			]
 		}
 	},

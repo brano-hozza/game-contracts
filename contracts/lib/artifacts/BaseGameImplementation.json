@@ -49,18 +49,161 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"assetContract()": "4d16304f"
+			"allowedAttributes(address,uint256)": "94186337",
+			"assetContracts(bytes32)": "bdfbcd13",
+			"getAllowedAttributes(address)": "94cac053",
+			"getAssetContract(bytes32)": "40081cfc",
+			"getSupportedAssetTypes()": "31cc6156",
+			"supportedAssetTypes(uint256)": "83f57455"
 		}
 	},
 	"abi": [
 		{
-			"inputs": [],
-			"name": "assetContract",
-			"outputs": [
+			"anonymous": false,
+			"inputs": [
 				{
-					"internalType": "contract IGameAsset",
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "assetType",
+					"type": "bytes32"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "assetContract",
+					"type": "address"
+				}
+			],
+			"name": "AssetContractRegistered",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "bytes32",
+					"name": "assetType",
+					"type": "bytes32"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "assetContract",
+					"type": "address"
+				}
+			],
+			"name": "AssetContractRemoved",
+			"type": "event"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
 					"name": "",
 					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "allowedAttributes",
+			"outputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
+				}
+			],
+			"name": "assetContracts",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "assetContract",
+					"type": "address"
+				}
+			],
+			"name": "getAllowedAttributes",
+			"outputs": [
+				{
+					"internalType": "bytes32[]",
+					"name": "",
+					"type": "bytes32[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "bytes32",
+					"name": "assetType",
+					"type": "bytes32"
+				}
+			],
+			"name": "getAssetContract",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getSupportedAssetTypes",
+			"outputs": [
+				{
+					"internalType": "bytes32[]",
+					"name": "",
+					"type": "bytes32[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "supportedAssetTypes",
+			"outputs": [
+				{
+					"internalType": "bytes32",
+					"name": "",
+					"type": "bytes32"
 				}
 			],
 			"stateMutability": "view",

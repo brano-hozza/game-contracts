@@ -12,13 +12,6 @@ interface IGameAsset is IERC165, IERC721 {
     /// @dev Emitted when an attribute is modified by a registered game
     event AttributeModified(uint256 indexed tokenId, address indexed game, bytes32 indexed attributeId, bytes value);
     
-    /// @dev Emitted when a game registers to interact with assets
-    event GameRegistered(address indexed game, bytes32[] supportedAttributes);
-    
-    /// @notice Register a game to interact with assets
-    /// @param supportedAttributes List of attribute IDs the game can modify
-    function registerGame(bytes32[] calldata supportedAttributes) external;
-    
     /// @notice Set attributes for a token
     /// @param tokenId The ID of the token to modify
     /// @param attributes List of attribute IDs to modify
